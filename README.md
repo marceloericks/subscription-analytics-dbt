@@ -123,9 +123,11 @@ A estrutura também favorece a rastreabilidade das transformações e a reutiliz
 
 ## Camada Staging
 
-A camada Staging é responsável pela preparação inicial dos dados para consumo analítico.
+A camada Staging é responsável pela preparação e padronização dos dados brutos para consumo analítico.
 
-As transformações realizadas incluem:
+Nesta etapa são realizadas transformações iniciais voltadas à melhoria da qualidade dos dados, padronização de atributos e aplicação das primeiras regras de negócio da solução. O objetivo é garantir que as camadas posteriores trabalhem com informações consistentes e estruturadas, reduzindo a complexidade da modelagem analítica.
+
+As principais transformações realizadas incluem:
 
 - Conversão de tipos de dados.
 - Padronização de atributos.
@@ -135,13 +137,16 @@ As transformações realizadas incluem:
 
 ### stg_payments
 
-Modelo responsável pela preparação dos dados financeiros.
+Modelo responsável pela preparação e padronização dos dados financeiros utilizados na pipeline.
+
+Nesta etapa são realizadas conversões de tipos, validações básicas de qualidade e identificação de pagamentos reembolsados, garantindo consistência para as etapas posteriores de modelagem financeira e construção das métricas de receita.
 
 Transformações implementadas:
 
 - Conversão de datas e valores monetários.
-- Identificação de pagamentos reembolsados.
-- Criação do indicador `is_refund`.
+- Identificação automática de pagamentos reembolsados.
+- Criação do indicador `is_refund`, utilizado posteriormente nos cálculos de receita líquida e métricas financeiras.
+- Remoção de registros sem identificação válida de cliente.
 - Preparação dos dados para modelagem financeira.
 
 ![stg_payments](images/stg_payments_model.png)
