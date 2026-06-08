@@ -173,11 +173,13 @@ Transformações implementadas:
 
 Após a preparação dos dados, foi aplicada uma modelagem analítica inspirada em conceitos de modelagem dimensional.
 
-A separação entre fatos e dimensões permite maior reutilização dos modelos e reduz a duplicação de lógica de negócio.
+A separação entre fatos e dimensões permite centralizar regras de negócio, reduzir a duplicação de lógica entre análises e disponibilizar modelos reutilizáveis para diferentes cenários analíticos. Essa abordagem também facilita a manutenção da pipeline e garante maior consistência na geração das métricas finais.
 
 ### Dimensão de Clientes
 
-Modelo responsável por centralizar os atributos descritivos dos clientes.
+Modelo responsável por consolidar os principais atributos cadastrais dos clientes em uma única entidade analítica.
+
+A centralização dessas informações permite reutilização consistente dos atributos em diferentes análises e reduz a necessidade de replicar dados descritivos em múltiplos modelos da solução.
 
 Informações disponibilizadas:
 
@@ -189,20 +191,25 @@ Informações disponibilizadas:
 
 ### Fato de Pagamentos
 
-Tabela fato responsável pelos eventos financeiros.
+Tabela fato responsável por consolidar os eventos financeiros da operação.
+
+O modelo concentra informações relacionadas a pagamentos e reembolsos, além de aplicar regras utilizadas na construção das métricas financeiras da solução. A estrutura permite análises de receita, comportamento de pagamentos e desempenho financeiro dos clientes.
 
 Informações disponibilizadas:
 
 - Pagamentos realizados.
 - Reembolsos.
 - Receita líquida.
+- Classificação de pagamentos por faixa de valor.
 - Datas das transações.
 
 ![fct_payments](images/fct_payments_model.png)
 
 ### Fato de Assinaturas
 
-Tabela fato responsável pelos eventos relacionados às assinaturas.
+Tabela fato responsável por consolidar os eventos relacionados ao ciclo de vida das assinaturas.
+
+O modelo disponibiliza informações utilizadas para análise de atividade dos clientes, status das assinaturas e identificação da base ativa, servindo como fundamento para métricas de retenção e acompanhamento dos planos contratados.
 
 Informações disponibilizadas:
 
