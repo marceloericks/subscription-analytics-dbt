@@ -1,0 +1,21 @@
+version: 2
+
+models:
+  - name: fct_payments
+
+    columns:
+      - name: payment_id
+
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+
+        tests:
+          - not_null
+
+      - name: subscription_id
+
+        tests:
+          - not_null
