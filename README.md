@@ -312,13 +312,14 @@ A imagem abaixo demonstra a execução completa da pipeline analítica.
 
 ## Resultados
 
-- Pipeline analítica estruturada utilizando arquitetura em camadas.
-- Construção de modelos Staging, Facts, Dimensions e Mart.
-- Implementação de regras de negócio para assinaturas e pagamentos.
-- Criação de métricas analíticas prontas para consumo.
-- Configuração de testes automatizados de qualidade de dados.
-- Documentação completa da linhagem dos dados através do dbt Docs.
-- Organização modular das transformações para facilitar manutenção futura.
+- Estruturação de uma pipeline analítica completa utilizando dbt, DuckDB e SQL.
+- Consolidação dos dados de clientes, assinaturas e pagamentos em uma camada analítica padronizada.
+- Centralização das regras de negócio relacionadas a receita, reembolsos e status de assinaturas.
+- Disponibilização de métricas prontas para consumo analítico e reutilização em diferentes cenários de negócio.
+- Implementação de validações automatizadas para aumento da confiabilidade dos dados.
+- Rastreabilidade completa das transformações através da documentação de linhagem gerada pelo dbt.
+- Redução da duplicação de lógica analítica por meio da separação entre Staging, Facts, Dimensions e Mart.
+- Estrutura preparada para manutenção, evolução de métricas e expansão futura da solução.
 - Projeto desenvolvido seguindo práticas modernas de Analytics Engineering.
 
 ---
