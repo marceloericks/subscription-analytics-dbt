@@ -223,9 +223,13 @@ Informações disponibilizadas:
 
 A camada Mart representa a etapa final da pipeline e disponibiliza métricas prontas para consumo analítico.
 
-### Construção das Métricas
+Nesta etapa são consolidadas informações provenientes das dimensões e tabelas fato, transformando eventos operacionais em indicadores de negócio voltados à análise de clientes, assinaturas e receita.
 
-A construção do modelo final foi realizada utilizando CTEs para organizar responsabilidades e facilitar manutenção da lógica de negócio.
+### Construção do Modelo Analítico Final
+
+O modelo final foi desenvolvido utilizando CTEs para organizar responsabilidades e facilitar a manutenção da lógica de negócio.
+
+A estrutura da query permite separar etapas de agregação e consolidação das informações, tornando o processo mais legível e facilitando futuras evoluções das métricas analíticas.
 
 As principais etapas incluem:
 
@@ -233,14 +237,9 @@ As principais etapas incluem:
 - Contagem de pagamentos.
 - Contagem de reembolsos.
 - Identificação de assinaturas ativas.
+- Consolidação das informações provenientes das tabelas fato e dimensões.
 
-![Mart CTEs](images/mart_customer_metrics_ctes.png)
-
-### Modelo Final
-
-O modelo final consolida informações provenientes das dimensões e tabelas fato.
-
-As métricas geradas incluem:
+As métricas disponibilizadas incluem:
 
 - Receita total por cliente.
 - Quantidade de pagamentos.
@@ -249,6 +248,8 @@ As métricas geradas incluem:
 - Taxa de reembolso.
 - Status da assinatura.
 - Plano ativo.
+
+![Mart CTEs](images/mart_customer_metrics_ctes.png)
 
 ![Mart Final](images/mart_customer_metrics_final.png)
 
