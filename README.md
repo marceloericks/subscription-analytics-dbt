@@ -82,7 +82,9 @@ O projeto foi desenvolvido de ponta a ponta, desde a preparação dos dados brut
 
 ## Arquitetura da Solução
 
-A pipeline foi estruturada utilizando uma arquitetura em camadas:
+A pipeline foi estruturada para transformar dados brutos de clientes, assinaturas e pagamentos em uma camada analítica confiável, documentada e pronta para consumo.
+
+A arquitetura adotada segue uma abordagem em camadas amplamente utilizada em projetos de Analytics Engineering, permitindo separar responsabilidades entre preparação, modelagem e disponibilização dos dados. Essa estrutura reduz o acoplamento entre transformações, facilita a manutenção das regras de negócio e aumenta a confiabilidade das métricas geradas ao longo da pipeline.
 
 ```text
 Raw Data
@@ -94,9 +96,16 @@ Facts & Dimensions
 Mart
 ```
 
-Essa abordagem permite separar responsabilidades entre preparação, modelagem e disponibilização dos dados, reduzindo acoplamento e facilitando manutenção futura.
+Cada camada desempenha um papel específico dentro do processo analítico:
 
-O Lineage Graph gerado pelo dbt documenta automaticamente as dependências entre os modelos e garante rastreabilidade completa das transformações.
+- **Raw Data:** armazenamento dos dados brutos provenientes das fontes originais.
+- **Staging:** padronização, limpeza e preparação inicial dos dados para consumo analítico.
+- **Facts & Dimensions:** aplicação das regras de negócio e construção da modelagem analítica.
+- **Mart:** consolidação de métricas e indicadores prontos para consumo por analistas e áreas de negócio.
+
+Essa organização permite que alterações em transformações ou regras de negócio sejam realizadas de forma controlada, reduzindo impactos em modelos dependentes e aumentando a rastreabilidade das informações ao longo de toda a solução.
+
+O Lineage Graph gerado pelo dbt documenta automaticamente as dependências entre os modelos, permitindo visualizar o fluxo completo dos dados desde as tabelas brutas até as métricas finais. Essa rastreabilidade facilita auditorias, manutenção da pipeline e identificação da origem de cada indicador disponibilizado para análise.
 
 ![Lineage Graph](images/dbt_lineage_graph.png)
 
