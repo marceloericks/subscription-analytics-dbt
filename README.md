@@ -1,247 +1,58 @@
 # Subscription Analytics Pipeline com dbt, DuckDB e SQL
 
-## Visão Geral
+## Contexto
 
 Projeto de Analytics Engineering desenvolvido para transformar dados brutos de clientes, assinaturas e pagamentos em uma camada analítica confiável, documentada e pronta para consumo.
 
-A solução foi construída utilizando dbt, DuckDB e SQL, seguindo uma arquitetura em camadas e incorporando testes automatizados, documentação da linhagem dos dados e modelagem analítica orientada a métricas de negócio.
+A solução foi construída utilizando dbt, DuckDB e SQL, seguindo uma arquitetura moderna de transformação de dados baseada em camadas analíticas. O projeto contempla modelagem dimensional, testes automatizados de qualidade, documentação da linhagem dos dados e construção de métricas de negócio voltadas à análise de clientes, assinaturas e receita.
+
+O objetivo foi simular um cenário real de Analytics Engineering, aplicando boas práticas utilizadas em ambientes corporativos para garantir confiabilidade, rastreabilidade e reutilização dos ativos de dados.
+
+---
 
 ## Meu Papel
 
-Atuei como Analytics Engineer responsável pelo desenvolvimento completo da pipeline analítica.
+Atuei como Analytics Engineer responsável pelo desenvolvimento completo da solução.
 
-As atividades realizadas incluíram:
+Minhas responsabilidades incluíram:
 
 - Estruturação da arquitetura do projeto em dbt.
 - Desenvolvimento das transformações SQL.
 - Construção dos modelos Staging, Facts, Dimensions e Mart.
 - Implementação de regras de negócio para pagamentos e assinaturas.
 - Configuração de testes automatizados de qualidade de dados.
-- Documentação da linhagem dos dados através do dbt Docs.
-- Versionamento e documentação técnica do projeto utilizando Git e GitHub.
+- Documentação da linhagem dos dados utilizando dbt Docs.
+- Organização do versionamento e documentação técnica do projeto com Git e GitHub.
 
-O projeto foi desenvolvido seguindo conceitos modernos de Analytics Engineering, com foco em modularidade, rastreabilidade, reutilização de código e confiabilidade dos dados.
+O projeto foi desenvolvido de ponta a ponta, desde a preparação dos dados brutos até a construção da camada final de métricas analíticas.
 
-## Arquitetura da Solução
+---
 
-A pipeline foi estruturada seguindo o fluxo:
+## Principais Desafios
 
-**Raw Data → Staging → Facts & Dimensions → Mart**
+- Estruturar uma pipeline analítica seguindo boas práticas de Analytics Engineering.
+- Padronizar dados provenientes de diferentes entidades de negócio.
+- Implementar regras de negócio para assinaturas e pagamentos.
+- Garantir qualidade e consistência dos dados através de testes automatizados.
+- Construir modelos reutilizáveis para análises futuras.
+- Documentar completamente as dependências e transformações da pipeline.
 
-Essa abordagem permite separar responsabilidades entre as diferentes camadas do projeto.
-
-- A camada **Raw** representa os dados de origem.
-- A camada **Staging** realiza limpeza, padronização e preparação dos dados.
-- A camada **Facts & Dimensions** organiza os dados em entidades analíticas reutilizáveis.
-- A camada **Mart** concentra métricas prontas para consumo.
-
-Essa separação reduz acoplamento entre transformações, facilita manutenção e melhora a rastreabilidade dos dados.
-
-O Lineage Graph gerado pelo dbt documenta automaticamente as dependências entre os modelos.
-
-A visualização permite identificar exatamente quais transformações contribuem para cada modelo final, facilitando auditoria, manutenção e análise de impacto em futuras alterações.
-
-![Lineage Graph](images/dbt_lineage_graph.png)
+---
 
 ## Principais Funcionalidades
 
 - Padronização e tratamento de dados de clientes, assinaturas e pagamentos.
 - Construção de modelos analíticos reutilizáveis.
-- Implementação de regras de negócio em SQL.
-- Modelagem em camadas seguindo boas práticas de Analytics Engineering.
-- Testes automatizados de qualidade de dados com dbt.
-- Documentação automática da linhagem dos dados.
-- Geração de métricas prontas para consumo analítico.
-
-## Estrutura do Projeto
-
-Organização do projeto dbt contendo modelos, documentação, testes e componentes de transformação.
-
-![Estrutura do Projeto](images/project_structure.png)
-
-## Camada Staging
-
-A camada Staging é responsável por transformar dados brutos em dados confiáveis para utilização nas etapas seguintes da pipeline.
-
-Nessa camada são realizadas atividades como:
-
-- Padronização de formatos.
-- Limpeza de valores inconsistentes.
-- Conversão de tipos de dados.
-- Normalização de atributos.
-- Aplicação inicial de regras de negócio.
-
-### stg_payments
-
-Modelo responsável pelo tratamento dos dados financeiros.
-
-Entre as transformações implementadas estão:
-
-- Identificação de transações reembolsadas.
-- Normalização de campos financeiros.
-- Tratamento de datas e atributos monetários.
-- Criação da métrica `net_revenue`, utilizada posteriormente nos cálculos de receita líquida.
-
-A separação dessa lógica em uma camada específica evita duplicação de regras ao longo do projeto.
-
-![stg_payments](images/stg_payments_model.png)
-
-### stg_subscriptions
-
-Modelo responsável pela preparação dos dados de assinaturas.
-
-As transformações incluem:
-
-- Padronização dos status de assinatura.
-- Tratamento de registros inconsistentes.
-- Criação do indicador de assinatura ativa.
-- Organização dos atributos utilizados na modelagem analítica.
-
-![stg_subscriptions](images/stg_subscriptions_model.png)
-
-## Modelagem Analítica
-
-Após a preparação dos dados, foi utilizada uma abordagem inspirada em modelagem dimensional para organizar as entidades de negócio.
-
-O objetivo dessa camada é criar modelos reutilizáveis e desacoplados das regras de limpeza implementadas anteriormente.
-
-### Dimensão de Clientes
-
-A dimensão de clientes concentra atributos descritivos dos usuários.
-
-Entre os dados disponibilizados estão:
-
-- Identificador do cliente.
-- Nome.
-- E-mail.
-- País.
-- Data de cadastro.
-
-Essa estrutura permite enriquecer análises futuras sem necessidade de consultar diretamente os dados brutos.
-
-### Fato de Pagamentos
-
-Tabela fato responsável por registrar eventos financeiros relacionados aos clientes.
-
-O modelo consolida:
-
-- Valores pagos.
-- Valores reembolsados.
-- Receita líquida.
-- Datas das transações.
-
-A utilização de uma tabela fato facilita agregações e cálculos de métricas financeiras.
-
-![fct_payments](images/fct_payments_model.png)
-
-### Fato de Assinaturas
-
-Tabela fato responsável pelos eventos relacionados às assinaturas.
-
-O modelo contém:
-
-- Plano contratado.
-- Status da assinatura.
-- Indicador de assinatura ativa.
-
-Essas informações são posteriormente utilizadas na construção das métricas finais de negócio.
-
-## Camada Mart
-
-A camada Mart representa a etapa final da pipeline.
-
-Seu objetivo é disponibilizar métricas prontas para consumo analítico, reduzindo a necessidade de novas transformações por parte de dashboards ou relatórios.
-
-### Construção das Métricas
-
-A construção do modelo final foi realizada utilizando CTEs para separar responsabilidades e facilitar manutenção da lógica de negócio.
-
-As CTEs realizam:
-
-- Agregação de receitas por cliente.
-- Contagem de pagamentos.
-- Contagem de reembolsos.
-- Identificação de assinaturas ativas.
-
-![Mart CTEs](images/mart_customer_metrics_ctes.png)
-
-### Modelo Final
-
-O modelo final consolida informações provenientes das dimensões e fatos criados anteriormente.
-
-As principais métricas geradas incluem:
-
-- Receita total por cliente.
-- Quantidade de pagamentos.
-- Quantidade de reembolsos.
-- Ticket médio.
-- Taxa de reembolso.
-- Status da assinatura.
-- Plano ativo.
-
-Esse modelo representa a camada de consumo da solução e pode ser utilizado diretamente em dashboards, análises exploratórias e relatórios.
-
-![Mart Final](images/mart_customer_metrics_final.png)
-
-## Qualidade de Dados
-
-Uma das principais vantagens do dbt é a capacidade de incorporar testes diretamente ao processo de transformação.
-
-Os testes foram definidos através de arquivos YAML e executados automaticamente durante a validação da pipeline.
-
-### Configuração dos Testes
-
-![Schema Tests](images/dbt_tests_schema_yml.png)
-
-As validações implementadas incluem:
-
-#### not_null
-
-Garante que colunas críticas não contenham valores nulos.
-
-Exemplos:
-
-- customer_id
-- payment_id
-- subscription_id
-
-#### unique
-
-Garante que identificadores de negócio não possuam duplicidades indevidas.
-
-Exemplos:
-
-- customer_id
-- payment_id
-
-#### relationships
-
-Valida a integridade referencial entre modelos.
-
-Exemplos:
-
-- pagamentos devem estar associados a clientes válidos.
-- assinaturas devem possuir clientes existentes.
-
-Esses testes ajudam a detectar problemas de qualidade antes que eles impactem análises ou indicadores.
-
-### Execução dos Testes
-
-A imagem abaixo demonstra a execução bem-sucedida dos testes configurados.
-
-![dbt Test](images/dbt_test_success.png)
-
-## Execução da Pipeline
-
-Após a validação dos modelos e dos testes, o dbt realiza a materialização dos modelos analíticos.
-
-Durante essa etapa são executadas todas as dependências definidas através da função `ref()`, respeitando automaticamente a ordem correta de processamento dos dados.
-
-A utilização do mecanismo de dependências do dbt elimina a necessidade de gerenciamento manual da ordem de execução das transformações.
-
-![dbt Run](images/dbt_run_success.png)
-
-## Stack Utilizada
+- Modelagem dimensional utilizando tabelas fato e dimensão.
+- Implementação de regras de negócio para receita líquida e status de assinaturas.
+- Construção de métricas analíticas prontas para consumo.
+- Testes automatizados de qualidade de dados.
+- Documentação automática da linhagem dos dados através do dbt Docs.
+- Organização modular das transformações utilizando dbt.
+
+---
+
+## Stack
 
 - SQL
 - dbt
@@ -252,26 +63,235 @@ A utilização do mecanismo de dependências do dbt elimina a necessidade de ger
 - Data Modeling
 - Data Quality Testing
 
+---
+
 ## Competências Demonstradas
 
 - Analytics Engineering
-- SQL Avançado
-- Data Modeling
+- SQL
 - Data Transformation
-- Data Cleaning
+- Data Modeling
 - Data Quality
 - dbt
 - DuckDB
 - Documentação de Dados
-- Versionamento com Git
 - Construção de Pipelines Analíticas
+- Versionamento com Git
+
+---
+
+## Arquitetura da Solução
+
+A pipeline foi estruturada utilizando uma arquitetura em camadas:
+
+```text
+Raw Data
+    ↓
+Staging
+    ↓
+Facts & Dimensions
+    ↓
+Mart
+```
+
+Essa abordagem permite separar responsabilidades entre preparação, modelagem e disponibilização dos dados, reduzindo acoplamento e facilitando manutenção futura.
+
+O Lineage Graph gerado pelo dbt documenta automaticamente as dependências entre os modelos e garante rastreabilidade completa das transformações.
+
+![Lineage Graph](images/dbt_lineage_graph.png)
+
+---
+
+## Estrutura do Projeto
+
+Organização do projeto dbt contendo modelos, documentação, testes e componentes responsáveis pelas transformações analíticas.
+
+![Estrutura do Projeto](images/project_structure.png)
+
+---
+
+## Camada Staging
+
+A camada Staging é responsável pela preparação inicial dos dados para consumo analítico.
+
+As transformações realizadas incluem:
+
+- Conversão de tipos de dados.
+- Padronização de atributos.
+- Tratamento de inconsistências.
+- Limpeza de registros inválidos.
+- Aplicação inicial de regras de negócio.
+
+### stg_payments
+
+Modelo responsável pela preparação dos dados financeiros.
+
+Transformações implementadas:
+
+- Conversão de datas e valores monetários.
+- Identificação de pagamentos reembolsados.
+- Criação do indicador `is_refund`.
+- Preparação dos dados para modelagem financeira.
+
+![stg_payments](images/stg_payments_model.png)
+
+### stg_subscriptions
+
+Modelo responsável pela preparação dos dados de assinaturas.
+
+Transformações implementadas:
+
+- Padronização dos planos.
+- Padronização dos status das assinaturas.
+- Tratamento de registros duplicados.
+- Identificação da versão mais recente de cada assinatura.
+
+![stg_subscriptions](images/stg_subscriptions_model.png)
+
+---
+
+## Modelagem Analítica
+
+Após a preparação dos dados, foi aplicada uma modelagem analítica inspirada em conceitos de modelagem dimensional.
+
+A separação entre fatos e dimensões permite maior reutilização dos modelos e reduz a duplicação de lógica de negócio.
+
+### Dimensão de Clientes
+
+Modelo responsável por centralizar os atributos descritivos dos clientes.
+
+Informações disponibilizadas:
+
+- Identificador do cliente.
+- Nome.
+- E-mail.
+- País.
+- Data de cadastro.
+
+### Fato de Pagamentos
+
+Tabela fato responsável pelos eventos financeiros.
+
+Informações disponibilizadas:
+
+- Pagamentos realizados.
+- Reembolsos.
+- Receita líquida.
+- Datas das transações.
+
+![fct_payments](images/fct_payments_model.png)
+
+### Fato de Assinaturas
+
+Tabela fato responsável pelos eventos relacionados às assinaturas.
+
+Informações disponibilizadas:
+
+- Plano contratado.
+- Status da assinatura.
+- Indicador de assinatura ativa.
+
+---
+
+## Camada Mart
+
+A camada Mart representa a etapa final da pipeline e disponibiliza métricas prontas para consumo analítico.
+
+### Construção das Métricas
+
+A construção do modelo final foi realizada utilizando CTEs para organizar responsabilidades e facilitar manutenção da lógica de negócio.
+
+As principais etapas incluem:
+
+- Agregação de receita por cliente.
+- Contagem de pagamentos.
+- Contagem de reembolsos.
+- Identificação de assinaturas ativas.
+
+![Mart CTEs](images/mart_customer_metrics_ctes.png)
+
+### Modelo Final
+
+O modelo final consolida informações provenientes das dimensões e tabelas fato.
+
+As métricas geradas incluem:
+
+- Receita total por cliente.
+- Quantidade de pagamentos.
+- Quantidade de reembolsos.
+- Ticket médio.
+- Taxa de reembolso.
+- Status da assinatura.
+- Plano ativo.
+
+![Mart Final](images/mart_customer_metrics_final.png)
+
+---
+
+## Qualidade de Dados
+
+A qualidade dos dados foi incorporada diretamente ao processo de transformação através dos testes nativos do dbt.
+
+### Testes Implementados
+
+Foram configurados testes para validação automática dos principais identificadores e métricas da pipeline.
+
+Validações implementadas:
+
+#### not_null
+
+Garante que campos críticos não contenham valores nulos.
+
+Exemplos:
+
+- `customer_id`
+- `payment_id`
+- `subscription_id`
+
+#### unique
+
+Garante que identificadores de negócio não possuam duplicidades indevidas.
+
+Exemplos:
+
+- `customer_id`
+- `payment_id`
+
+![Schema Tests](images/dbt_tests_schema_yml.png)
+
+### Execução dos Testes
+
+Os testes são executados automaticamente através do comando `dbt test`, permitindo identificar problemas de qualidade antes que eles impactem análises e indicadores.
+
+A imagem abaixo demonstra a execução bem-sucedida dos testes configurados.
+
+![dbt Test](images/dbt_test_success.png)
+
+---
+
+## Execução da Pipeline
+
+A execução da pipeline é realizada através do mecanismo de dependências do dbt, utilizando referências entre modelos por meio da função `ref()`.
+
+Essa abordagem garante que todas as transformações sejam executadas automaticamente na ordem correta.
+
+![dbt Run](images/dbt_run_success.png)
+
+---
+
+## Resultados
+
+- Pipeline analítica estruturada utilizando arquitetura em camadas.
+- Construção de modelos Staging, Facts, Dimensions e Mart.
+- Implementação de regras de negócio para assinaturas e pagamentos.
+- Criação de métricas analíticas prontas para consumo.
+- Configuração de testes automatizados de qualidade de dados.
+- Documentação completa da linhagem dos dados através do dbt Docs.
+- Organização modular das transformações para facilitar manutenção futura.
+- Projeto desenvolvido seguindo práticas modernas de Analytics Engineering.
+
+---
 
 ## Dataset
 
 O projeto utiliza dados simulados de clientes, assinaturas e pagamentos para fins educacionais e demonstração técnica.
-
-## Resultado
-
-Foi construída uma pipeline analítica completa utilizando dbt e DuckDB, contemplando transformação de dados, modelagem analítica, testes automatizados e documentação da linhagem dos dados.
-
-A solução entrega uma camada final de métricas pronta para consumo analítico, seguindo práticas modernas de Analytics Engineering, governança de dados e desenvolvimento orientado à qualidade.
