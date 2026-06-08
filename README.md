@@ -113,11 +113,13 @@ O Lineage Graph gerado pelo dbt documenta automaticamente as dependências entre
 
 ## Estrutura do Projeto
 
-Organização do projeto dbt contendo modelos, documentação, testes e componentes responsáveis pelas transformações analíticas.
+O projeto foi organizado seguindo a separação de responsabilidades proposta pelo dbt, permitindo isolar transformações, documentação, testes e componentes reutilizáveis em áreas específicas da solução.
+
+Essa organização facilita a manutenção da pipeline, reduz o acoplamento entre modelos e torna mais simples a evolução das regras de negócio ao longo do tempo.
+
+A estrutura também favorece a rastreabilidade das transformações e a reutilização de componentes analíticos, seguindo práticas comuns em projetos de Analytics Engineering.
 
 ![Estrutura do Projeto](images/project_structure.png)
-
----
 
 ## Camada Staging
 
