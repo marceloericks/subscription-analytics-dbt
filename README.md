@@ -290,9 +290,9 @@ Exemplos:
 
 ### Execução dos Testes
 
-Os testes são executados automaticamente através do comando `dbt test`, permitindo identificar problemas de qualidade antes que eles impactem análises e indicadores.
+Os testes configurados são executados através do comando `dbt test`, permitindo validar automaticamente regras de qualidade e integridade dos dados antes que inconsistências impactem as camadas analíticas.
 
-A imagem abaixo demonstra a execução bem-sucedida dos testes configurados.
+A imagem abaixo demonstra a execução bem-sucedida dos testes implementados na solução.
 
 ![dbt Test](images/dbt_test_success.png)
 
@@ -300,9 +300,11 @@ A imagem abaixo demonstra a execução bem-sucedida dos testes configurados.
 
 ## Execução da Pipeline
 
-A execução da pipeline é realizada através do mecanismo de dependências do dbt, utilizando referências entre modelos por meio da função `ref()`.
+A pipeline foi construída utilizando o mecanismo de dependências do dbt, permitindo que todas as transformações sejam executadas automaticamente na sequência correta.
 
-Essa abordagem garante que todas as transformações sejam executadas automaticamente na ordem correta.
+Essa abordagem reduz a necessidade de controle manual da ordem de execução dos modelos e garante consistência entre as diferentes camadas da solução, desde os dados brutos até as métricas finais disponibilizadas para análise.
+
+A imagem abaixo demonstra a execução completa da pipeline analítica.
 
 ![dbt Run](images/dbt_run_success.png)
 
