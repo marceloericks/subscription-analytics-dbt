@@ -153,14 +153,17 @@ Transformações implementadas:
 
 ### stg_subscriptions
 
-Modelo responsável pela preparação dos dados de assinaturas.
+Modelo responsável pela padronização e consolidação dos dados de assinaturas utilizados na camada analítica.
+
+Nesta etapa são aplicados tratamentos para uniformizar nomenclaturas de planos e status, além da identificação da versão mais recente de cada assinatura. O objetivo é garantir uma representação consistente do ciclo de vida das assinaturas e evitar distorções causadas por registros duplicados ou históricos desatualizados.
 
 Transformações implementadas:
 
-- Padronização dos planos.
+- Padronização dos planos contratados.
 - Padronização dos status das assinaturas.
 - Tratamento de registros duplicados.
-- Identificação da versão mais recente de cada assinatura.
+- Identificação da versão mais recente de cada assinatura utilizando funções analíticas.
+- Preparação dos dados para modelagem analítica e métricas de atividade dos clientes.
 
 ![stg_subscriptions](images/stg_subscriptions_model.png)
 
