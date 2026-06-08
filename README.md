@@ -326,4 +326,14 @@ A imagem abaixo demonstra a execução completa da pipeline analítica.
 
 ## Dataset
 
-O projeto utiliza dados simulados de clientes, assinaturas e pagamentos para fins educacionais e demonstração técnica.
+O projeto utiliza dados simulados de clientes, assinaturas e pagamentos, disponibilizados diretamente no repositório através de arquivos CSV utilizados como fonte da pipeline analítica.
+
+Os datasets representam entidades comuns em negócios baseados em assinaturas e foram estruturados para permitir a implementação de processos de transformação, modelagem dimensional, testes de qualidade e construção de métricas analíticas.
+
+Arquivos utilizados:
+
+- `raw_customers.csv`
+- `raw_subscriptions.csv`
+- `raw_payments.csv`
+
+Os dados foram utilizados exclusivamente para fins educacionais e demonstração técnica da solução.
