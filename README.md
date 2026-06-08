@@ -259,15 +259,17 @@ As métricas disponibilizadas incluem:
 
 A qualidade dos dados foi incorporada diretamente ao processo de transformação através dos testes nativos do dbt.
 
+A validação automática dos modelos permite identificar problemas de consistência antes que eles impactem métricas, análises ou consumidores da camada analítica, aumentando a confiabilidade da pipeline e reduzindo riscos associados à propagação de dados incorretos.
+
 ### Testes Implementados
 
-Foram configurados testes para validação automática dos principais identificadores e métricas da pipeline.
+Foram configurados testes para validação automática dos principais identificadores e regras de integridade da solução.
 
-Validações implementadas:
+As validações implementadas garantem que os modelos mantenham padrões mínimos de qualidade ao longo de toda a pipeline analítica.
 
 #### not_null
 
-Garante que campos críticos não contenham valores nulos.
+Valida a presença de informações consideradas obrigatórias para o funcionamento correto dos modelos analíticos, evitando a propagação de registros incompletos para as camadas posteriores.
 
 Exemplos:
 
@@ -277,7 +279,7 @@ Exemplos:
 
 #### unique
 
-Garante que identificadores de negócio não possuam duplicidades indevidas.
+Valida a unicidade de identificadores de negócio utilizados ao longo da solução, evitando duplicidades que possam comprometer agregações, métricas e análises.
 
 Exemplos:
 
