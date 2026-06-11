@@ -281,6 +281,7 @@ O dbt gerencia automaticamente as dependências entre modelos e executa as trans
 - Implementação de testes automatizados de qualidade.
 - Documentação automática da linhagem dos dados.
 - Estrutura preparada para evolução e manutenção.
+- - Disponibilização de uma camada analítica pronta para consumo por dashboards, relatórios e análises ad hoc.
 
 ---
 
