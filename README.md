@@ -67,7 +67,7 @@ O dbt gera automaticamente a documentação da linhagem dos dados, permitindo ra
 
 ## Estrutura do Projeto
 
-Organização do repositório seguindo boas práticas do dbt:
+A organização do projeto segue as convenções do dbt, separando modelos, documentação, testes e componentes reutilizáveis para facilitar manutenção, escalabilidade e evolução das regras de negócio.
 
 ![Estrutura do Projeto](images/project_structure.png)
 
