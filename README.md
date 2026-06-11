@@ -200,31 +200,35 @@ A construção do modelo final foi realizada através de CTEs responsáveis por 
 
 ![Mart Final](images/mart_customer_metrics_final.png)
 
-### Resultado da Camada Analítica
+### Estrutura da Camada Analítica
 
-Após a aplicação das regras de negócio e consolidação das informações, a pipeline gera uma tabela analítica pronta para consumo.
+O modelo `mart_customer_metrics` representa o produto final da pipeline analítica.
 
-![Mart Dataset](images/mart_final_dataset.png)
+Ele consolida informações provenientes das dimensões e tabelas fato, centralizando métricas de receita, pagamentos e assinaturas em um único dataset analítico pronto para consumo.
 
-### Exemplo de Métricas Geradas
+| Coluna | Descrição |
+|---------|---------|
+| customer_id | Identificador único do cliente |
+| customer_name | Nome do cliente |
+| email | E-mail do cliente |
+| country | País do cliente |
+| total_revenue | Receita total gerada pelo cliente |
+| payment_count | Quantidade de pagamentos realizados |
+| refund_count | Quantidade de reembolsos recebidos |
+| plan | Plano de assinatura do cliente |
 
-| customer_id | total_revenue | payment_count | refund_count | plan |
-|------------|--------------:|--------------:|-------------:|------|
-| 1 | 1323 | 17 | 0 | Basic |
-| 4 | 763 | 7 | 0 | Basic |
-| 5 | 631 | 9 | 0 | Enterprise |
-| 12 | 1146 | 15 | 1 | Enterprise |
-| 20 | 1253 | 18 | 1 | Pro |
+### Valor para o Negócio
 
-A partir dessa camada analítica é possível responder perguntas de negócio como:
+A camada analítica final permite responder perguntas como:
 
 - Quais clientes geram mais receita?
 - Qual o volume de pagamentos por cliente?
 - Qual a taxa de reembolso da operação?
 - Quais planos possuem maior adesão?
-- Quais clientes possuem assinaturas ativas?
+- Como a receita está distribuída entre os clientes?
+- Quais segmentos de clientes apresentam maior valor para o negócio?
 
-O resultado é uma camada analítica reutilizável que transforma dados operacionais dispersos em informações prontas para análise e tomada de decisão.
+Ao centralizar métricas e regras de negócio em um único modelo analítico, a solução reduz a necessidade de transformações adicionais, aumenta a consistência das análises e facilita a construção de dashboards e relatórios para tomada de decisão.
 
 ---
 
