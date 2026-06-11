@@ -180,6 +180,8 @@ Principais atributos:
 
 Camada final responsável pela consolidação das métricas de negócio.
 
+Os dados brutos de clientes, assinaturas e pagamentos são transformados em um modelo analítico único, pronto para consumo por analistas, dashboards e áreas de negócio.
+
 Principais cálculos:
 
 - Receita por Cliente
@@ -192,9 +194,37 @@ Principais cálculos:
 
 ### Modelo Analítico Final
 
+A construção do modelo final foi realizada através de CTEs responsáveis por consolidar informações de clientes, pagamentos e assinaturas em uma única camada analítica.
+
 ![Mart CTEs](images/mart_customer_metrics_ctes.png)
 
 ![Mart Final](images/mart_customer_metrics_final.png)
+
+### Resultado da Camada Analítica
+
+Após a aplicação das regras de negócio e consolidação das informações, a pipeline gera uma tabela analítica pronta para consumo.
+
+![Mart Dataset](images/mart_final_dataset.png)
+
+### Exemplo de Métricas Geradas
+
+| customer_id | total_revenue | payment_count | refund_count | plan |
+|------------|--------------:|--------------:|-------------:|------|
+| 1 | 1323 | 17 | 0 | Basic |
+| 4 | 763 | 7 | 0 | Basic |
+| 5 | 631 | 9 | 0 | Enterprise |
+| 12 | 1146 | 15 | 1 | Enterprise |
+| 20 | 1253 | 18 | 1 | Pro |
+
+A partir dessa camada analítica é possível responder perguntas de negócio como:
+
+- Quais clientes geram mais receita?
+- Qual o volume de pagamentos por cliente?
+- Qual a taxa de reembolso da operação?
+- Quais planos possuem maior adesão?
+- Quais clientes possuem assinaturas ativas?
+
+O resultado é uma camada analítica reutilizável que transforma dados operacionais dispersos em informações prontas para análise e tomada de decisão.
 
 ---
 
