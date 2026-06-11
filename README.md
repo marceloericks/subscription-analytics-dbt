@@ -22,22 +22,6 @@ Simular um cenário real de Analytics Engineering aplicando boas práticas de me
 
 ---
 
-## Métricas Disponibilizadas
-
-A camada analítica final disponibiliza indicadores prontos para consumo:
-
-- Receita Total por Cliente
-- Receita Líquida
-- Ticket Médio
-- Quantidade de Pagamentos
-- Quantidade de Reembolsos
-- Taxa de Reembolso
-- Status da Assinatura
-- Plano Ativo
-- Quantidade de Assinaturas Ativas
-
----
-
 ## Stack
 
 - SQL
@@ -49,19 +33,6 @@ A camada analítica final disponibiliza indicadores prontos para consumo:
 
 ---
 
-## Competências Demonstradas
-
-- Analytics Engineering
-- Data Modeling
-- Data Transformation
-- SQL
-- dbt
-- Data Quality Testing
-- Dimensional Modeling
-- Data Documentation
-- Git Version Control
-
----
 
 ## Arquitetura da Solução
 
@@ -255,19 +226,7 @@ Validação de unicidade:
 
 ![Schema Tests](images/dbt_tests_schema_yml.png)
 
-### Execução dos Testes
-
-Validação automática através do comando `dbt test`.
-
-![dbt Test](images/dbt_test_success.png)
-
----
-
-## Execução da Pipeline
-
-O dbt gerencia automaticamente as dependências entre modelos e executa as transformações na ordem correta.
-
-![dbt Run](images/dbt_run_success.png)
+Os testes são executados automaticamente pelo dbt durante a validação da pipeline, garantindo integridade e consistência dos principais identificadores utilizados ao longo da solução analítica.
 
 ---
 
@@ -282,17 +241,3 @@ O dbt gerencia automaticamente as dependências entre modelos e executa as trans
 - Documentação automática da linhagem dos dados.
 - Estrutura preparada para evolução e manutenção.
 - - Disponibilização de uma camada analítica pronta para consumo por dashboards, relatórios e análises ad hoc.
-
----
-
-## Dataset
-
-O projeto utiliza dados simulados disponibilizados no próprio repositório.
-
-Arquivos utilizados:
-
-- `raw_customers.csv`
-- `raw_subscriptions.csv`
-- `raw_payments.csv`
-
-Os dados foram utilizados exclusivamente para fins educacionais e demonstração técnica da solução.
