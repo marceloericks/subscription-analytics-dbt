@@ -205,13 +205,15 @@ Ao centralizar métricas e regras de negócio em um único modelo analítico, a 
 
 ## Qualidade de Dados
 
-A qualidade dos dados foi implementada utilizando os testes nativos do dbt.
+A qualidade dos dados foi implementada utilizando os testes nativos do dbt para validar a integridade e a consistência dos principais identificadores utilizados ao longo da pipeline analítica.
 
 ### Testes Aplicados
 
 #### not_null
 
-Validação de campos obrigatórios:
+Garante que campos essenciais para relacionamentos, agregações e geração de métricas não possuam valores nulos, evitando perda de informações e inconsistências nos modelos analíticos.
+
+Campos validados:
 
 - `customer_id`
 - `payment_id`
@@ -219,14 +221,16 @@ Validação de campos obrigatórios:
 
 #### unique
 
-Validação de unicidade:
+Garante que identificadores que representam entidades únicas não possuam registros duplicados, preservando a integridade dos dados e evitando distorções em métricas e indicadores.
+
+Campos validados:
 
 - `customer_id`
 - `payment_id`
 
 ![Schema Tests](images/dbt_tests_schema_yml.png)
 
-Os testes são executados automaticamente pelo dbt durante a validação da pipeline, garantindo integridade e consistência dos principais identificadores utilizados ao longo da solução analítica.
+Os testes são executados automaticamente durante a validação da pipeline, contribuindo para a confiabilidade, consistência e qualidade dos dados disponibilizados para análise.
 
 ---
 
