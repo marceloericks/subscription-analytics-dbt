@@ -33,6 +33,18 @@ Simular um cenário real de Analytics Engineering aplicando boas práticas de me
 
 ---
 
+## Dados Utilizados
+
+O projeto utiliza três datasets simulando uma operação baseada em assinaturas, disponibilizados na pasta `seeds/`:
+
+- `raw_customers.csv` — informações cadastrais dos clientes, incluindo identificação, dados de contato e país.
+- `raw_subscriptions.csv` — histórico de assinaturas, planos contratados, status e período de vigência.
+- `raw_payments.csv` — registros de pagamentos realizados, valores transacionados e reembolsos.
+
+Os datasets servem como fonte de dados bruta para as transformações implementadas ao longo da pipeline analítica.
+
+---
+
 
 ## Arquitetura da Solução
 
