@@ -240,4 +240,4 @@ Os testes são executados automaticamente pelo dbt durante a validação da pipe
 - Implementação de testes automatizados de qualidade.
 - Documentação automática da linhagem dos dados.
 - Estrutura preparada para evolução e manutenção.
-- - Disponibilização de uma camada analítica pronta para consumo por dashboards, relatórios e análises ad hoc.
+- Disponibilização de uma camada analítica pronta para consumo por dashboards, relatórios e análises ad hoc.
